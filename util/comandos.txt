@@ -1,0 +1,2 @@
+sudo docker build --tag "python-unisinos:dashboard"  -f dashboard.dockerfile ..
+sudo docker run -p 8050:8050 -it python-unisinos:dashboard
