@@ -14,7 +14,7 @@ O trabalho pode ser executado de de três formas:
 
 ### Instalação local
     - Ter o Python 3
-    - No termial navegar até a pasta do projeto
+    - No terminal navegar até a pasta do projeto
     - Rodar o comando 
             pip install -r requirements.txt  
     - Rodar o comando
@@ -24,7 +24,7 @@ O trabalho pode ser executado de de três formas:
 ### Execução via Docker
     - Uma imagem docker foi disponibilizada e publicada no DockerHub. Tendo o docker instalado na máquina executar:
 
-            sudo docker run -p 8050:8050 -it docker.io/mmdcosta/python:python-unisinos-dashboard
+        sudo docker run -p 8050:8050 -it docker.io/mmdcosta/python:python-unisinos-dashboard
 
 ### Acessando o DashBoard
     http://0.0.0.0:8050/dashboard/preco-combustiveis-brasil/
