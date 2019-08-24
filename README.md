@@ -6,6 +6,7 @@ O trabalho foi desenvolvido em Python versão 3.7.4, e utilizando as libs:
     - Dash
     - Plotly
     - Flask
+    - Pandas
 
 ## Passos para execução
 
