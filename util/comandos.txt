@@ -1,11 +1,4 @@
-sudo docker build --tag "docker.io/mmdcosta:python-unisinos-dashboard"  -f dashboard.dockerfile ..
-sudo docker run -p 8050:8050 -it docker.io/mmdcosta:python-unisinos-dashboard 
+sudo docker build --tag "docker.io/mmdcosta/python:python-unisinos-dashboard"  -f dashboard.dockerfile ..
+sudo docker run -p 8050:8050 -it docker.io/mmdcosta/python:python-unisinos-dashboard
 
-sudo docker push docker.io/mmdcosta:python-unisinos-dashboard
-
-
-docker tag ${image_id} docker.io/${login_name}/${image_name} 
-
-and then
-
-docker push docker.io/${login_name}/${image_name} is OK
+sudo docker push docker.io/mmdcosta/python:python-unisinos-dashboard
