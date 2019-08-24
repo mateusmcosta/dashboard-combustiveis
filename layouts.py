@@ -50,7 +50,7 @@ layout_regioes =  html.Div([
           dcc.Checklist(
                 id="produtos_regiao_ano",
                 options=produtos,
-                values=['GASOLINA COMUM'],
+                values=['GASOLINA COMUM', 'ÓLEO DIESEL'],
                labelStyle={'display': 'inline-block', 'width': '30%', 'margin':'auto', 'marginTop': 15, 'paddingLeft': 15},
           )], className="row ", style={'marginTop': 30, 'marginBottom': 30}),
         html.Div([
@@ -88,8 +88,8 @@ layout_regioes =  html.Div([
         ], className="row ", style={'marginTop': 30, 'marginBottom': 45,  'left-padding': '15px'}),
         # First Data Table
         dcc.Graph(id='graph-with-slider'),
-
-         dcc.Graph(id='graph-estabelecimentos-pesquisados'),
+        dcc.Graph(id='graph-media-pais'),
+        dcc.Graph(id='graph-estabelecimentos-pesquisados'),
         ], className="subpage", style={'border-style': 'solid;', 'left-padding': '15px'}),
     ], className="page")
 
@@ -122,7 +122,7 @@ layout_estados =  html.Div([
           dcc.Checklist(
                 id="produtos_estado",
                 options=produtos,
-                values=['GASOLINA COMUM'],
+                values=['GASOLINA COMUM', 'ÓLEO DIESEL'],
                 labelStyle={'display': 'inline-block', 'width': '30%', 'margin':'auto', 'marginTop': 15, 'paddingLeft': 15},
           )], className="row ", style={'marginTop': 30, 'marginBottom': 30}),
         html.Div([
@@ -160,7 +160,7 @@ layout_estados =  html.Div([
         ], className="row ", style={'marginTop': 30, 'marginBottom': 30, 'left-padding': '15px'}),
         # First Data Table
         dcc.Graph(id='graph-with-slider-estado'),
-
+         dcc.Graph(id='graph-media-estados'),
          dcc.Graph(id='graph-estabelecimentos-pesquisados-estados'),
         ], className="subpage")
     ], className="page")

@@ -20,13 +20,6 @@ def desenha_grafico_regioes(tipo_selecao, selected_year, produtos, variavel, reg
   fig = go.Figure()
  
   for produto in produtos:
-      # titulo = '{} - Produto {}'.format('MÉDIA NACIONAL', produto)
-      # df_nacional = db.dados_pais_intervalo_ano_criterio(selected_year, variavel)
-      # df_nacional_filtrado = db.filtra_produto(df_nacional, produto)
-      # fig.add_trace(go.Scatter(x= retorna_valores_eixo_x(tipo_selecao, df_nacional_filtrado), y=df_nacional_filtrado[variavel]['mean'],
-      #             mode='markers',
-      #             name=titulo))
-
       for regiao in regioes:
         filtered = df.loc[(df['PRODUTO'] == produto) & (df['REGIÃO'] == regiao)]
         titulo = '{} - Produto {}'.format(regiao, produto)
@@ -78,7 +71,7 @@ def retonar_nome_eixo_x(tipo_selecao):
   if(tipo_selecao == 1):
     return 'ANO'
 
-  return 'Mês'
+  return 'MÊS'
 
 def retorna_valores_regiao(tipo_selecao, ano, variavel):
   if(tipo_selecao == 1):
@@ -140,6 +133,65 @@ def desenha_grafico_nro_postos(tipo_selecao, selected_year, produtos, linhas, ag
               xaxis_title=nome_eixo_x,
               yaxis_title=variavel)
   return fig
+
+
+def desenha_media_pais(tipo_selecao, selected_year, produtos, variavel, regioes): 
+  fig = go.Figure()
+  nome_eixo_x = retonar_nome_eixo_x(tipo_selecao)
+  for produto in produtos:
+      titulo = '{} - PRODUTO {}'.format('MÉDIA NACIONAL', produto)
+      df_nacional = retorna_media_nacional(tipo_selecao,selected_year, variavel)
+      df_nacional_filtrado = db.filtra_produto(df_nacional, produto)
+      fig.add_trace(go.Scatter(x= retorna_valores_eixo_x(tipo_selecao, df_nacional_filtrado), y=df_nacional_filtrado[variavel]['mean'],
+                  mode='lines+markers',
+                  name=titulo))
+    
+  fig.update_layout(title='MÉDIA NACIONAL - {}'.format(variavel),
+              xaxis_title=nome_eixo_x,
+              yaxis_title=variavel)
+  return fig
+
+@app.callback(
+    Output('graph-media-estados', 'figure'),
+    [   Input('tipo_selecao_estado_ano', 'value'), 
+        Input('ano_estado_ano', 'value'), 
+        Input('produtos_estado', 'values'), 
+        Input('variável_estado', 'value')])
+def desenha_media_estados(tipo_selecao, selected_year, produtos, variavel):
+  return grafico_media_pais(tipo_selecao, selected_year, produtos, variavel)
+
+@app.callback(
+    Output('graph-media-pais', 'figure'),
+    [
+        Input('tipo_selecao_regiao_ano', 'value'), 
+        Input('ano_regiao_ano', 'value'), 
+        Input('produtos_regiao_ano', 'values'), 
+        Input('variável_regiao_ano', 'value')])
+def desenha_media_pais(tipo_selecao, selected_year, produtos, variavel): 
+  return grafico_media_pais(tipo_selecao, selected_year, produtos, variavel)
+
+def grafico_media_pais(tipo_selecao, selected_year, produtos, variavel): 
+  fig = go.Figure()
+  nome_eixo_x = retonar_nome_eixo_x(tipo_selecao)
+  for produto in produtos:
+      titulo = 'MÉDIA NACIONAL - PRODUTO {}'.format(produto)
+      df_nacional = retorna_media_nacional(tipo_selecao, selected_year, variavel)
+      df_nacional_filtrado = db.filtra_produto(df_nacional, produto)
+      fig.add_trace(go.Scatter(x= retorna_valores_eixo_x(tipo_selecao, df_nacional_filtrado), y=df_nacional_filtrado[variavel]['mean'],
+                  mode='lines+markers',
+                  name=titulo))
+    
+  fig.update_layout(title='MÉDIA NACIONAL - {}'.format(variavel),
+              xaxis_title=nome_eixo_x,
+              yaxis_title=variavel)
+  return fig 
+  
+def retorna_media_nacional(tipo_selecao, selected_year, variavel):
+  if(tipo_selecao == 1):
+    return db.dados_pais_intervalo_ano_criterio(selected_year, variavel)
+
+  return db.dados_pais_ano_criterio(selected_year, variavel)
+    
 
 def retorna_postos_df(agrupamento, tipo_selecao, selected_year, variavel):
   if(agrupamento == 'REGIÃO'):
