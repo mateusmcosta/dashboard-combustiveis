@@ -16,6 +16,11 @@ def dados_estados_intervalo_ano_criterio(ano, variavel):
 def dados_estados_ano_criterio(ano, variavel):
     return data_base[data_base['ANO'] == ano].groupby(['ANO', 'MÊS', 'ESTADO', 'PRODUTO'],as_index=False).agg({variavel:['mean']})
 
+def dados_pais_intervalo_ano_criterio(ano, variavel):
+    return data_base[data_base['ANO'] <= ano].groupby(['ANO', 'PRODUTO'],as_index=False).agg({variavel:['mean']})
+
+def dados_pais_ano_criterio(ano, variavel):
+    return data_base[data_base['ANO'] == ano].groupby(['ANO', 'PRODUTO'],as_index=False).agg({variavel:['mean']})
 
 def estados():
     estados = data_base['ESTADO'].unique()

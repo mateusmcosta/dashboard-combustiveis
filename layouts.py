@@ -1,10 +1,6 @@
 import dash_core_components as dcc
 import dash_html_components as html
-import dash_table
 from components import Header
-from datetime import datetime as dt
-from datetime import date, timedelta
-import pandas as pd
 import data_base as db
 
 # Efetua a leitura da base de dados
@@ -92,7 +88,9 @@ layout_regioes =  html.Div([
         ], className="row ", style={'marginTop': 30, 'marginBottom': 45,  'left-padding': '15px'}),
         # First Data Table
         dcc.Graph(id='graph-with-slider'),
-        ], className="subpage", style={'border-style': 'solid;', 'left-padding': '15px'})
+
+         dcc.Graph(id='graph-estabelecimentos-pesquisados'),
+        ], className="subpage", style={'border-style': 'solid;', 'left-padding': '15px'}),
     ], className="page")
 
 
@@ -162,6 +160,8 @@ layout_estados =  html.Div([
         ], className="row ", style={'marginTop': 30, 'marginBottom': 30, 'left-padding': '15px'}),
         # First Data Table
         dcc.Graph(id='graph-with-slider-estado'),
+
+         dcc.Graph(id='graph-estabelecimentos-pesquisados-estados'),
         ], className="subpage")
     ], className="page")
 
