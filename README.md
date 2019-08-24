@@ -15,7 +15,7 @@ O trabalho pode ser executar o trabalho de três formas:
     - Ter o Python 3
     - No termial navegar até a pasta do projeto
     - Rodar o comando 
-            pip install -r /opt/dashboard/requirements.txt  
+            pip install -r requirements.txt  
     - Rodar o comando
             python index.py
     - 
